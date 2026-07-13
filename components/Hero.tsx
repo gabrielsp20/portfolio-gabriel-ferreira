@@ -27,8 +27,8 @@ export function Hero() {
         </h1>
 
         <p className="mt-8 max-w-6xl text-xl leading-relaxed text-gold-300 md:text-2xl">
-          Profissional de TI com experiência em suporte corporativo, automação
-          e criação de soluções web.
+          Profissional de TI com experiência em suporte corporativo, automação e
+          criação de soluções web.
         </p>
 
         <p className="mt-6 max-w-3xl text-base leading-8 text-gold-300/80 md:text-lg">
@@ -37,7 +37,7 @@ export function Hero() {
           melhoram o atendimento.
         </p>
 
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
           <Link
             href="/projetos"
             className="inline-flex min-h-14 items-center justify-center rounded-md bg-gold-400 px-8 text-lg font-semibold text-navy-900 transition-all hover:-translate-y-0.5 hover:bg-gold-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-400"
@@ -51,6 +51,18 @@ export function Hero() {
           >
             Conhecer minha experiência
           </Link>
+
+          <a
+            href="/documentos/curriculo-gabriel-ferreira.pdf"
+            download="Curriculo-Gabriel-Ferreira.pdf"
+            className="inline-flex min-h-14 items-center justify-center gap-3 rounded-md border border-gold-400/25 px-8 text-lg font-semibold text-gold-300/80 transition-all hover:-translate-y-0.5 hover:border-gold-400/60 hover:bg-gold-400/10 hover:text-gold-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-400"
+          >
+            Baixar currículo
+
+            <span aria-hidden="true" className="text-xl">
+              ↓
+            </span>
+          </a>
         </div>
 
         <ul

@@ -8,6 +8,10 @@ type DestaqueProfissional = {
   label: string;
 };
 
+type Responsabilidade = {
+  description: string;
+};
+
 const frentesDeAtuacao: FrenteDeAtuacao[] = [
   {
     title: "Atendimento e diagnóstico",
@@ -33,11 +37,38 @@ const destaques: DestaqueProfissional[] = [
   },
   {
     value: "SLA",
-    label: "atendimento orientado por prioridade e prazo",
+    label: "atendimento orientado por prioridade, prazo e impacto",
   },
   {
     value: "Fim a fim",
-    label: "diagnóstico, documentação e encaminhamento",
+    label: "diagnóstico, documentação, solução e encaminhamento",
+  },
+];
+
+const responsabilidades: Responsabilidade[] = [
+  {
+    description:
+      "Atendimento remoto a usuários em ambiente corporativo, buscando compreender o impacto e a urgência de cada solicitação.",
+  },
+  {
+    description:
+      "Diagnóstico de problemas relacionados a computadores, Windows, aplicações, impressoras, scanners, dispositivos e conectividade.",
+  },
+  {
+    description:
+      "Registro das evidências, testes realizados, causas identificadas e soluções aplicadas durante os atendimentos.",
+  },
+  {
+    description:
+      "Encaminhamento de incidentes para equipes presenciais ou especialistas, com informações técnicas claras e completas.",
+  },
+  {
+    description:
+      "Atuação orientada por SLA, prioridade, impacto operacional e continuidade do atendimento aos usuários.",
+  },
+  {
+    description:
+      "Desenvolvimento de scripts, automações e ferramentas para reduzir tarefas repetitivas e melhorar processos internos.",
   },
 ];
 
@@ -45,82 +76,231 @@ export function Experience() {
   return (
     <section
       aria-labelledby="titulo-experiencia"
-      className="flex min-h-[calc(100dvh-120px)] items-center border-t border-gold-400/15 bg-navy-950/45 px-6 py-10 lg:px-10 lg:py-8"
+      className="min-h-[calc(100dvh-120px)] border-t border-gold-400/15 bg-navy-950/45 px-6 py-12 lg:px-10 lg:py-16"
     >
-      <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
-        <div>
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-gold-500">
-            Experiência profissional
-          </p>
+      <div className="mx-auto w-full max-w-7xl">
+        <header className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+          <div>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-gold-500">
+              Experiência profissional
+            </p>
 
-          <h1
-            id="titulo-experiencia"
-            className="max-w-xl font-serif text-5xl leading-tight tracking-[-0.03em] text-gold-400 md:text-6xl"
-          >
-            Suporte técnico com responsabilidade operacional.
-          </h1>
+            <h1
+              id="titulo-experiencia"
+              className="max-w-xl font-serif text-5xl leading-tight tracking-[-0.03em] text-gold-400 md:text-6xl"
+            >
+              Suporte técnico com responsabilidade operacional.
+            </h1>
 
-          <p className="mt-6 max-w-lg text-base leading-8 text-gold-300/80 md:text-lg">
-            Atuo em Service Desk corporativo, atendendo usuários, investigando
-            falhas e acompanhando cada incidente até a solução ou o
-            encaminhamento correto.
-          </p>
+            <p className="mt-6 max-w-lg text-base leading-8 text-gold-300/80 md:text-lg">
+              Atuo em Service Desk corporativo, atendendo usuários, investigando
+              falhas e acompanhando cada incidente até a solução ou o
+              encaminhamento correto.
+            </p>
 
-          <p className="mt-5 max-w-lg text-base leading-8 text-gold-300/65">
-            Minha experiência combina atendimento, conhecimento técnico,
-            documentação e busca constante por maneiras mais eficientes de
-            executar o trabalho.
-          </p>
-        </div>
-
-        <div className="flex flex-col justify-center">
-          <div className="grid gap-px overflow-hidden border border-gold-400/15 bg-gold-400/15 sm:grid-cols-3">
-            {destaques.map((destaque) => (
-              <article key={destaque.value} className="bg-navy-900/90 p-6">
-                <p className="font-serif text-4xl font-semibold text-gold-400">
-                  {destaque.value}
-                </p>
-
-                <p className="mt-3 text-sm leading-6 text-gold-300/70">
-                  {destaque.label}
-                </p>
-              </article>
-            ))}
+            <p className="mt-5 max-w-lg text-base leading-8 text-gold-300/65">
+              Minha experiência combina atendimento, conhecimento técnico,
+              documentação e busca constante por maneiras mais eficientes de
+              executar o trabalho.
+            </p>
           </div>
 
-          <div className="mt-8 space-y-6">
-            {frentesDeAtuacao.map((frente, index) => (
-              <article
-                key={frente.title}
-                className="grid gap-4 border-b border-gold-400/15 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[72px_0.45fr_1fr] md:items-start"
+          <div className="flex flex-col justify-center">
+            <div className="grid gap-px overflow-hidden border border-gold-400/15 bg-gold-400/15 sm:grid-cols-3">
+              {destaques.map((destaque) => (
+                <article
+                  key={destaque.value}
+                  className="bg-navy-900/90 p-6"
+                >
+                  <p className="font-serif text-4xl font-semibold text-gold-400">
+                    {destaque.value}
+                  </p>
+
+                  <p className="mt-3 text-sm leading-6 text-gold-300/70">
+                    {destaque.label}
+                  </p>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-8 space-y-6">
+              {frentesDeAtuacao.map((frente, index) => (
+                <article
+                  key={frente.title}
+                  className="grid gap-4 border-b border-gold-400/15 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[72px_0.45fr_1fr] md:items-start"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="font-serif text-2xl text-gold-400/30"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <h2 className="font-serif text-2xl font-semibold text-gold-400">
+                    {frente.title}
+                  </h2>
+
+                  <p className="text-sm leading-7 text-gold-300/70 md:text-base">
+                    {frente.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </header>
+
+        <section
+          aria-labelledby="trajetoria-profissional"
+          className="mt-20 border-t border-gold-400/20 pt-14 md:mt-24 md:pt-16"
+        >
+          <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold-500">
+                Trajetória
+              </p>
+
+              <h2
+                id="trajetoria-profissional"
+                className="mt-4 max-w-xl font-serif text-4xl leading-tight text-gold-400 md:text-5xl"
               >
+                Experiência construída na prática.
+              </h2>
+
+              <p className="mt-6 max-w-lg text-base leading-8 text-gold-300/65">
+                Minha atuação profissional é marcada pelo contato direto com
+                usuários, investigação de falhas, responsabilidade sobre
+                incidentes e melhoria contínua dos processos de suporte.
+              </p>
+            </div>
+
+            <div>
+              <article className="relative border-l border-gold-400/25 pl-8 md:pl-10">
                 <span
                   aria-hidden="true"
-                  className="font-serif text-2xl text-gold-400/30"
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+                  className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-gold-400"
+                />
 
-                <h2 className="font-serif text-2xl font-semibold text-gold-400">
-                  {frente.title}
-                </h2>
+                <div className="flex flex-col gap-5 border-b border-gold-400/15 pb-10 md:flex-row md:items-start md:justify-between">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-500">
+                      Experiência atual
+                    </p>
 
-                <p className="text-sm leading-7 text-gold-300/70 md:text-base">
-                  {frente.description}
-                </p>
+                    <h3 className="mt-3 font-serif text-3xl font-semibold text-gold-400">
+                      Analista de Suporte de TI / Service Desk
+                    </h3>
+
+                    <p className="mt-2 text-base font-semibold text-gold-300/80">
+                      SONDA
+                    </p>
+                  </div>
+
+                  <div className="shrink-0 text-sm leading-7 text-gold-300/55 md:text-right">
+                    <p>Atual</p>
+                    <p>Vitória da Conquista, Bahia</p>
+                    <p>Atuação remota</p>
+                  </div>
+                </div>
+
+                <div className="pt-8">
+                  <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-gold-500">
+                    Principais responsabilidades
+                  </h4>
+
+                  <ul className="mt-6 grid gap-4">
+                    {responsabilidades.map((responsabilidade, index) => (
+                      <li
+                        key={responsabilidade.description}
+                        className="grid grid-cols-[32px_1fr] gap-3"
+                      >
+                        <span className="font-serif text-lg text-gold-400/35">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+
+                        <p className="text-sm leading-7 text-gold-300/70 md:text-base">
+                          {responsabilidade.description}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </article>
-            ))}
+            </div>
           </div>
+        </section>
 
-          <aside className="mt-8 border-l-2 border-gold-400/45 pl-5">
-            <p className="text-sm leading-7 text-gold-300/70">
-              Além das atividades operacionais, desenvolvo soluções próprias em
-              PowerShell, JavaScript, Python, React e bancos de dados para
-              transformar necessidades observadas no suporte em ferramentas
-              práticas.
-            </p>
-          </aside>
-        </div>
+        <section
+          aria-labelledby="formacao-academica"
+          className="mt-20 border-t border-gold-400/20 pt-14 md:mt-24 md:pt-16"
+        >
+          <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold-500">
+                Formação
+              </p>
+
+              <h2
+                id="formacao-academica"
+                className="mt-4 max-w-xl font-serif text-4xl leading-tight text-gold-400 md:text-5xl"
+              >
+                Base acadêmica em tecnologia.
+              </h2>
+
+              <p className="mt-6 max-w-lg text-base leading-8 text-gold-300/65">
+                A formação em computação complementa minha experiência prática
+                e amplia minha capacidade de compreender sistemas, lógica,
+                desenvolvimento e resolução de problemas.
+              </p>
+            </div>
+
+            <article className="relative border-l border-gold-400/25 pl-8 md:pl-10">
+              <span
+                aria-hidden="true"
+                className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-gold-400"
+              />
+
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-500">
+                Ensino superior
+              </p>
+
+              <h3 className="mt-3 font-serif text-3xl font-semibold text-gold-400">
+                Ciência da Computação
+              </h3>
+
+              <p className="mt-5 max-w-3xl text-base leading-8 text-gold-300/70">
+                Formação voltada a fundamentos da computação, desenvolvimento
+                de sistemas, lógica de programação, banco de dados, engenharia
+                de software e resolução estruturada de problemas.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                {[
+                  "Lógica de programação",
+                  "Desenvolvimento de sistemas",
+                  "Banco de dados",
+                  "Engenharia de software",
+                  "Resolução de problemas",
+                ].map((competencia) => (
+                  <span
+                    key={competencia}
+                    className="border border-gold-400/20 bg-navy-900/35 px-4 py-2.5 text-sm text-gold-300/70"
+                  >
+                    {competencia}
+                  </span>
+                ))}
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <aside className="mt-20 border-l-2 border-gold-400/45 bg-navy-900/30 px-5 py-5 md:mt-24">
+          <p className="max-w-5xl text-sm leading-7 text-gold-300/70">
+            Além das atividades operacionais, desenvolvo soluções próprias em
+            PowerShell, JavaScript, Python, React e bancos de dados para
+            transformar necessidades observadas no suporte em ferramentas
+            práticas.
+          </p>
+        </aside>
       </div>
     </section>
   );

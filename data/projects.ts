@@ -51,7 +51,7 @@ export const projects = [
       "REST API",
     ],
     visibility: "private",
-    featured: true,
+    featured: false,
     confidentialityNote:
       "Código não publicado por conter integrações, configurações e informações relacionadas a ambiente corporativo.",
   },

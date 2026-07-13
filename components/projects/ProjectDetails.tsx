@@ -1,12 +1,60 @@
 import Link from "next/link";
 import type { Project } from "../../types/project";
+import {
+  ProjectImageGallery,
+  type ProjectGalleryImage,
+} from "./ProjectImageGallery";
 
 type ProjectDetailsProps = {
   project: Project;
 };
 
+const telasChamadaEbd: ProjectGalleryImage[] = [
+  {
+    image: "/images/projetos/chamada-ebd/01-chamada-ebd-painel.png",
+    title: "Painel principal",
+    description:
+      "Apresenta uma visão geral da Escola Bíblica Dominical, reunindo os principais indicadores da última aula, frequência das classes, visitantes, ofertas e total de participantes.",
+  },
+  {
+    image:
+      "/images/projetos/chamada-ebd/02-chamada-ebd-registro-presenca.png",
+    title: "Registro de chamada",
+    description:
+      "Permite registrar a presença dos alunos, professores, visitantes, ofertas e informações da aula em um único fluxo organizado.",
+  },
+  {
+    image: "/images/projetos/chamada-ebd/03-chamada-ebd-gestao-alunos.png",
+    title: "Gestão de alunos",
+    description:
+      "Centraliza o cadastro dos alunos e mantém informações como classe de origem, situação no sistema e participação nas aulas.",
+  },
+  {
+    image:
+      "/images/projetos/chamada-ebd/04-chamada-ebd-ranking-frequencia.png",
+    title: "Ranking de frequência",
+    description:
+      "Apresenta o desempenho das classes com base nas regras oficiais de frequência, facilitando o acompanhamento durante o trimestre.",
+  },
+  {
+    image:
+      "/images/projetos/chamada-ebd/05-chamada-ebd-historico-aulas.png",
+    title: "Histórico das aulas",
+    description:
+      "Mantém os registros das aulas anteriores e permite consultar datas, professores, participantes e resultados preservados no banco de dados.",
+  },
+  {
+    image:
+      "/images/projetos/chamada-ebd/06-chamada-ebd-relatorio-dia.png",
+    title: "Relatório da aula",
+    description:
+      "Reúne os números da EBD em um relatório consolidado, incluindo frequência, visitantes, ofertas e informações de cada classe.",
+  },
+];
+
 export function ProjectDetails({ project }: ProjectDetailsProps) {
   const isPrivate = project.visibility === "private";
+  const isChamadaEbd = project.slug === "sistema-gestao-ebd";
 
   return (
     <article className="min-h-[calc(100dvh-112px)] border-t border-gold-400/15 bg-navy-950/45 px-6 py-12 lg:px-10 lg:py-16">
@@ -72,9 +120,9 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
             </h2>
 
             <p className="mt-6 text-base leading-8 text-gold-300/65">
-              Este projeto foi criado a partir de uma situação real, com foco
-              em reduzir trabalho manual, organizar informações e tornar o
-              processo mais seguro e eficiente.
+              Este projeto foi criado a partir de uma situação real, com foco em
+              reduzir trabalho manual, organizar informações e tornar o processo
+              mais seguro e eficiente.
             </p>
           </div>
 
@@ -160,6 +208,34 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
             ))}
           </ul>
         </section>
+
+        {isChamadaEbd && (
+          <section
+            aria-labelledby="telas-chamada-ebd"
+            className="border-b border-gold-400/20 py-16 md:py-20"
+          >
+            <header className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold-500">
+                Telas do sistema
+              </p>
+
+              <h2
+                id="telas-chamada-ebd"
+                className="mt-4 font-serif text-4xl leading-tight text-gold-400 md:text-5xl"
+              >
+                Principais funcionalidades do projeto.
+              </h2>
+
+              <p className="mt-5 text-base leading-8 text-gold-300/65">
+                Conheça algumas das telas desenvolvidas para organizar a gestão
+                da Escola Bíblica Dominical, desde o registro de presença até a
+                consulta de históricos e relatórios.
+              </p>
+            </header>
+
+            <ProjectImageGallery images={telasChamadaEbd} />
+          </section>
+        )}
 
         <footer className="flex flex-col gap-5 pt-10 sm:flex-row sm:items-center sm:justify-between">
           <div>

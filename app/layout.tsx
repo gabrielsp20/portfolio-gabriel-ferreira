@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import "./globals.css";
 
@@ -55,10 +56,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
       data-scroll-behavior="smooth"
       className={`${manrope.variable} ${cormorantGaramond.variable} antialiased`}
     >
-      <body className="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_center,_#0a3563_0%,_#061d3b_50%,_#031429_100%)] text-gold-400">
+      <body className="flex min-h-screen flex-col overflow-x-hidden bg-[radial-gradient(circle_at_center,_#0a3563_0%,_#061d3b_50%,_#031429_100%)] text-gold-400">
         <Header />
 
-        {children}
+        <div className="flex-1">{children}</div>
+
+        <Footer />
       </body>
     </html>
   );
