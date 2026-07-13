@@ -19,6 +19,8 @@ const cormorantGaramond = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.gabrielsferreira.com.br"),
+
   title: {
     default: "Gabriel Ferreira | Suporte, Automação e Desenvolvimento",
     template: "%s | Gabriel Ferreira",
@@ -35,13 +37,25 @@ export const metadata: Metadata = {
 
   creator: "Gabriel Ferreira",
 
+  alternates: {
+    canonical: "/",
+  },
+
   openGraph: {
     title: "Gabriel Ferreira | Portfólio Profissional",
     description:
       "Suporte corporativo, automação e desenvolvimento de soluções para problemas reais de TI.",
+    url: "https://www.gabrielsferreira.com.br",
     type: "website",
     locale: "pt_BR",
     siteName: "Portfólio Gabriel Ferreira",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Gabriel Ferreira | Portfólio Profissional",
+    description:
+      "Suporte corporativo, automação e desenvolvimento de soluções para problemas reais de TI.",
   },
 };
 
