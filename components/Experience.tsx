@@ -236,20 +236,19 @@ export function Experience() {
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold-500">
-                Formação
+                Formação acadêmica
               </p>
 
               <h2
                 id="formacao-academica"
                 className="mt-4 max-w-xl font-serif text-4xl leading-tight text-gold-400 md:text-5xl"
               >
-                Base acadêmica em tecnologia.
+                Formação acadêmica concluída.
               </h2>
 
               <p className="mt-6 max-w-lg text-base leading-8 text-gold-300/65">
-                A formação em computação complementa minha experiência prática
-                e amplia minha capacidade de compreender sistemas, lógica,
-                desenvolvimento e resolução de problemas.
+                Graduação concluída pela Universidade Nove de Julho, com
+                titulação de Bacharel em Ciência da Computação.
               </p>
             </div>
 
@@ -259,36 +258,61 @@ export function Experience() {
                 className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-gold-400"
               />
 
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-500">
-                Ensino superior
-              </p>
+              <div className="flex flex-wrap items-center gap-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-500">
+                  Ensino superior
+                </p>
 
-              <h3 className="mt-3 font-serif text-3xl font-semibold text-gold-400">
-                Ciência da Computação
+                <span className="border border-gold-400/40 bg-gold-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gold-300">
+                  Concluído
+                </span>
+              </div>
+
+              <h3 className="mt-4 max-w-3xl font-serif text-3xl font-semibold leading-tight text-gold-400">
+                Ciência da Computação — Bacharelado
               </h3>
 
-              <p className="mt-5 max-w-3xl text-base leading-8 text-gold-300/70">
-                Formação voltada a fundamentos da computação, desenvolvimento
-                de sistemas, lógica de programação, banco de dados, engenharia
-                de software e resolução estruturada de problemas.
+              <p className="mt-4 text-base font-medium leading-8 text-gold-300/75">
+                Universidade Nove de Julho — UNINOVE
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                {[
-                  "Lógica de programação",
-                  "Desenvolvimento de sistemas",
-                  "Banco de dados",
-                  "Engenharia de software",
-                  "Resolução de problemas",
-                ].map((competencia) => (
-                  <span
-                    key={competencia}
-                    className="border border-gold-400/20 bg-navy-900/35 px-4 py-2.5 text-sm text-gold-300/70"
-                  >
-                    {competencia}
-                  </span>
-                ))}
-              </div>
+              <dl className="mt-8 grid gap-x-10 gap-y-6 border-t border-gold-400/15 pt-6 sm:grid-cols-2">
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-500">
+                    Titulação
+                  </dt>
+                  <dd className="mt-2 text-sm leading-7 text-gold-300/75">
+                    Bacharel em Ciência da Computação
+                  </dd>
+                </div>
+
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-500">
+                    Conclusão do curso
+                  </dt>
+                  <dd className="mt-2 text-sm leading-7 text-gold-300/75">
+                    <time dateTime="2022-12-20">20 de dezembro de 2022</time>
+                  </dd>
+                </div>
+
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-500">
+                    Colação de grau
+                  </dt>
+                  <dd className="mt-2 text-sm leading-7 text-gold-300/75">
+                    <time dateTime="2023-01-16">16 de janeiro de 2023</time>
+                  </dd>
+                </div>
+
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-500">
+                    Carga horária total
+                  </dt>
+                  <dd className="mt-2 text-sm leading-7 text-gold-300/65">
+                    3.636 horas-aula
+                  </dd>
+                </div>
+              </dl>
             </article>
           </div>
         </section>

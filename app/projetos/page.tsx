@@ -5,11 +5,12 @@ export const metadata: Metadata = {
   title: "Projetos",
   description:
     "Conheça os projetos desenvolvidos por Gabriel Ferreira para solucionar problemas reais de suporte técnico e automação.",
+  alternates: { canonical: "/projetos" },
 };
 
 export default function ProjetosPage() {
   return (
-    <main>
+    <main id="conteudo-principal">
       <Projects />
     </main>
   );

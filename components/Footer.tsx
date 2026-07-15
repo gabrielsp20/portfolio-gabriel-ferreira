@@ -36,7 +36,7 @@ export function Footer() {
 
             <p className="mt-3 max-w-lg text-sm leading-7 text-gold-300/60">
               Suporte de TI, automação e desenvolvimento de soluções para
-              problemas reais.
+              necessidades operacionais.
             </p>
           </div>
 

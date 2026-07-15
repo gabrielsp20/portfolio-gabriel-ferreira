@@ -5,11 +5,12 @@ export const metadata: Metadata = {
   title: "Sobre",
   description:
     "Conheça a trajetória profissional de Gabriel Ferreira em Suporte de TI, automação e desenvolvimento web.",
+  alternates: { canonical: "/sobre" },
 };
 
 export default function SobrePage() {
   return (
-    <main>
+    <main id="conteudo-principal">
       <About />
     </main>
   );

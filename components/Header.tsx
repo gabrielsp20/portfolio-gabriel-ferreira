@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const links = [
   { label: "Início", href: "/" },
@@ -15,6 +15,8 @@ const links = [
 export function Header() {
   const pathname = usePathname();
   const [menuAberto, setMenuAberto] = useState(false);
+  const botaoMenuRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!menuAberto) {
@@ -22,11 +24,68 @@ export function Header() {
     }
 
     const overflowAnterior = document.body.style.overflow;
+    const botaoMenu = botaoMenuRef.current;
+    const elementosDeFundo = Array.from(
+      document.querySelectorAll<HTMLElement>("main, footer"),
+    );
+    const estadoAnterior = elementosDeFundo.map((elemento) => ({
+      elemento,
+      inert: elemento.inert,
+      ariaHidden: elemento.getAttribute("aria-hidden"),
+    }));
 
     document.body.style.overflow = "hidden";
+    elementosDeFundo.forEach((elemento) => {
+      elemento.inert = true;
+      elemento.setAttribute("aria-hidden", "true");
+    });
+
+    const frame = window.requestAnimationFrame(() => {
+      menuRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
+    });
+
+    function tratarTeclado(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setMenuAberto(false);
+        return;
+      }
+
+      if (event.key !== "Tab" || !menuRef.current) {
+        return;
+      }
+
+      const itens = [
+        botaoMenu,
+        ...Array.from(menuRef.current.querySelectorAll<HTMLElement>("a[href]")),
+      ].filter((item): item is HTMLElement => item !== null);
+      const primeiro = itens[0];
+      const ultimo = itens[itens.length - 1];
+
+      if (event.shiftKey && document.activeElement === primeiro) {
+        event.preventDefault();
+        ultimo.focus();
+      } else if (!event.shiftKey && document.activeElement === ultimo) {
+        event.preventDefault();
+        primeiro.focus();
+      }
+    }
+
+    window.addEventListener("keydown", tratarTeclado);
 
     return () => {
+      window.cancelAnimationFrame(frame);
       document.body.style.overflow = overflowAnterior;
+      estadoAnterior.forEach(({ elemento, inert, ariaHidden }) => {
+        elemento.inert = inert;
+        if (ariaHidden === null) {
+          elemento.removeAttribute("aria-hidden");
+        } else {
+          elemento.setAttribute("aria-hidden", ariaHidden);
+        }
+      });
+      window.removeEventListener("keydown", tratarTeclado);
+      window.requestAnimationFrame(() => botaoMenu?.focus());
     };
   }, [menuAberto]);
 
@@ -76,12 +135,13 @@ export function Header() {
 
       {/* Botão do menu para celular */}
       <button
+        ref={botaoMenuRef}
         type="button"
         aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
         aria-expanded={menuAberto}
         aria-controls="menu-mobile"
         onClick={() => setMenuAberto((estadoAtual) => !estadoAtual)}
-        className="relative z-50 flex h-11 w-11 items-center justify-center border border-gold-400/35 md:hidden"
+        className="relative z-50 flex min-h-11 min-w-11 items-center justify-center border border-gold-400/35 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-400 md:hidden"
       >
         <span aria-hidden="true" className="relative block h-5 w-6">
           <span
@@ -106,9 +166,12 @@ export function Header() {
 
       {/* Menu aberto no celular */}
       <nav
+        ref={menuRef}
         id="menu-mobile"
         aria-label="Navegação para celular"
-        className={`fixed inset-x-0 bottom-0 top-[104px] z-40 border-t border-gold-400/15 bg-navy-950/95 px-6 py-8 backdrop-blur-md transition-all duration-300 md:hidden ${
+        aria-hidden={!menuAberto}
+        inert={!menuAberto}
+        className={`fixed inset-x-0 bottom-0 top-[104px] z-40 border-t border-gold-400/15 bg-navy-950/95 px-6 py-8 backdrop-blur-md transition-all duration-200 motion-reduce:transition-none md:hidden ${
           menuAberto
             ? "visible translate-x-0 opacity-100"
             : "invisible translate-x-full opacity-0"
@@ -124,7 +187,7 @@ export function Header() {
                   href={link.href}
                   aria-current={estaAtivo ? "page" : undefined}
                   onClick={() => setMenuAberto(false)}
-                  className="group flex items-center justify-between py-5"
+                  className="group flex min-h-14 items-center justify-between py-5 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-gold-400"
                 >
                   <span
                     className={`font-serif text-4xl transition-colors ${

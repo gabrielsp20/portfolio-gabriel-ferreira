@@ -1,0 +1,9 @@
+.featuredCard {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 64rem) {
+  .featuredCard {
+    grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
+  }
+}
