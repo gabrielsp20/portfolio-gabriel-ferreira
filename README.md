@@ -32,7 +32,7 @@ Apresentar a trajetória profissional, as competências e os estudos de caso com
 ## Projetos apresentados
 
 - **Sistema de Gestão da EBD:** aplicação de gestão com autenticação, perfis de acesso, chamadas, cadastros, histórico e relatórios.
-- **Gerador de Encaminhamento Field:** aplicação web pública para validar, gerar e manter localmente textos de encaminhamento técnico.
+- **Assistente de Encerramento de Chamados:** sistema web para gerar, editar, copiar e reutilizar registros técnicos de conclusão e encaminhamento, com salvamento automático e histórico pesquisável no navegador.
 - **Automação de Limpeza Remota em Massa:** ferramenta em PowerShell para configurar e acompanhar tentativas de disparo em vários equipamentos.
 - **Toolkit de Suporte Técnico:** aplicação desktop modular com recursos de mensagens, scripts, diagnóstico e apoio ao atendimento.
 - **Automação de Chamados em Lote:** extensão para organizar registros, filtros, fila e estados de processamento.
