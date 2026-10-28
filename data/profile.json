@@ -1,0 +1,129 @@
+{
+  "name": "Gabriel Ferreira",
+  "fullName": "Gabriel Silva Ferreira",
+  "role": "Analista de Suporte de TI / Service Desk",
+  "email": "gabriel.2110sp@gmail.com",
+  "phone": "(11) 95431-0182",
+  "location": "Vitória da Conquista, Bahia",
+  "availability": "Oportunidades remotas e presenciais",
+  "site": "https://www.gabrielsferreira.com.br",
+  "linkedin": "https://www.linkedin.com/in/gabriel-ferreira-387070204/",
+  "github": "https://github.com/gabrielsp20",
+  "resume": "/documentos/curriculo-gabriel-ferreira.pdf",
+  "summary": "Profissional de TI formado em Ciência da Computação, com experiência em suporte corporativo, Service Desk, diagnóstico remoto e documentação técnica. Atuo no atendimento a usuários, no suporte a aplicações e na melhoria de atividades recorrentes com scripts e automação.",
+  "experience": [
+    {
+      "company": "SONDA IT",
+      "role": "Analista de Suporte de TI / Service Desk",
+      "detail": "Agente 1A · Atendimento remoto corporativo",
+      "period": "jan/2023 – atual",
+      "start": "2023-01",
+      "responsibilities": [
+        "Atendimento remoto, registro, diagnóstico, resolução e acompanhamento de incidentes e requisições, considerando prioridade, impacto e prazos de SLA.",
+        "Suporte a Windows, Microsoft 365, VPN, proxy, impressoras, scanners e aplicações corporativas, incluindo sistemas utilizados no setor de saúde.",
+        "Coleta de evidências, documentação de testes e soluções e escalonamento para equipes presenciais, infraestrutura, redes ou especialistas.",
+        "Criação de procedimentos, scripts e ferramentas internas para padronizar registros e melhorar atividades recorrentes do Service Desk."
+      ]
+    },
+    {
+      "company": "SONDA IT",
+      "role": "Técnico de Suporte de TI",
+      "detail": "Atuação terceirizada",
+      "period": "mai/2022 – jan/2023",
+      "start": "2022-05",
+      "end": "2023-01",
+      "responsibilities": [
+        "Atendimento a usuários e diagnóstico de falhas em computadores, periféricos, software e aplicações empresariais.",
+        "Investigação de problemas de conectividade, perfis de usuário, drivers, impressão e digitalização; registro das ações e encaminhamento técnico quando necessário."
+      ]
+    },
+    {
+      "company": "Profissional autônomo",
+      "role": "Técnico de manutenção de dispositivos e informática",
+      "detail": "Atendimento direto ao cliente",
+      "period": "jan/2020 – nov/2021",
+      "start": "2020-01",
+      "end": "2021-11",
+      "responsibilities": [
+        "Manutenção de celulares, tablets, notebooks e computadores, com diagnóstico de falhas, troca de componentes e reinstalação de software.",
+        "Elaboração de orçamentos, orientação técnica e acompanhamento do serviço até a entrega."
+      ]
+    },
+    {
+      "company": "ASSISTHEL TELECOM",
+      "role": "Técnico de celulares",
+      "detail": "Manutenção e atendimento ao cliente",
+      "period": "jun/2018 – jan/2020",
+      "start": "2018-06",
+      "end": "2020-01",
+      "responsibilities": [
+        "Reparo de celulares e tablets, com troca de telas, conectores e reinstalação de software.",
+        "Atendimento ao cliente e apoio à venda de eletrônicos e acessórios."
+      ]
+    }
+  ],
+  "education": {
+    "course": "Bacharelado em Ciência da Computação",
+    "institution": "Universidade Nove de Julho — UNINOVE",
+    "period": "2019 – 2022",
+    "completion": "2022",
+    "status": "Concluído"
+  },
+  "skills": [
+    {
+      "title": "Suporte e operação",
+      "description": "Diagnóstico, atendimento e acompanhamento dos incidentes que afetam a rotina dos usuários.",
+      "items": [
+        "Windows e Microsoft 365",
+        "Service Desk e plataformas ITSM",
+        "Suporte a aplicações",
+        "VPN, proxy e periféricos",
+        "Documentação e escalonamento"
+      ]
+    },
+    {
+      "title": "Automação",
+      "description": "Scripts e padronização de procedimentos para organizar tarefas recorrentes de TI.",
+      "items": [
+        "PowerShell",
+        "Python",
+        "Processamento em lote",
+        "APIs REST",
+        "Padronização de processos"
+      ]
+    },
+    {
+      "title": "Desenvolvimento e dados",
+      "description": "Conhecimentos de programação e bancos de dados que complementam minha atuação em suporte e automação.",
+      "items": [
+        "JavaScript e TypeScript",
+        "React e Next.js",
+        "HTML e CSS",
+        "SQL, PostgreSQL e Supabase",
+        "Git e GitHub"
+      ]
+    }
+  ],
+  "principles": [
+    {
+      "title": "Entender o problema",
+      "description": "Ouvir o usuário, identificar o impacto e definir a prioridade do atendimento."
+    },
+    {
+      "title": "Investigar e testar",
+      "description": "Reunir evidências, verificar hipóteses e testar as ações antes de concluir."
+    },
+    {
+      "title": "Documentar com clareza",
+      "description": "Registrar o contexto, os testes e a solução para dar continuidade ao trabalho."
+    },
+    {
+      "title": "Resolver ou encaminhar",
+      "description": "Aplicar a solução ou escalar com as informações de que a próxima equipe precisa."
+    },
+    {
+      "title": "Melhorar a rotina",
+      "description": "Identificar repetições e avaliar onde procedimentos ou scripts podem ajudar."
+    }
+  ]
+}

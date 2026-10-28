@@ -1,119 +1,55 @@
-# Portfólio Profissional — Gabriel Ferreira
+﻿# Gabriel Ferreira — site profissional
 
-Portfólio de Gabriel Ferreira, Analista de Suporte de TI e Automação. O site apresenta a experiência em Service Desk como base para a criação de procedimentos, scripts, ferramentas internas e soluções web.
+Site em [www.gabrielsferreira.com.br](https://www.gabrielsferreira.com.br), com apresentação profissional, trajetória, competências, formação e contato. Identidade clássica em verde e areia, com Manrope no corpo e Cormorant Garamond nos títulos e no monograma GF.
 
-Site publicado: [www.gabrielsferreira.com.br](https://www.gabrielsferreira.com.br)
+## Desenvolvimento
 
-## Objetivo
-
-Apresentar a trajetória profissional, as competências e os estudos de caso com contexto técnico, evidências disponíveis e limitações conhecidas. O conteúdo é direcionado a oportunidades em suporte de TI, suporte N2, aplicações, automação, ferramentas internas e desenvolvimento júnior.
-
-## Tecnologias do portfólio
-
-- Next.js 16 com App Router
-- React 19
-- TypeScript
-- Tailwind CSS 4
-- `next/image` e `next/font`
-
-## Funcionalidades
-
-- Home com proposta profissional, projetos em destaque, experiência resumida e competências
-- Páginas dedicadas para Sobre, Experiência, Projetos e Contato
-- Estudos de caso gerados a partir de uma estrutura de dados tipada
-- Galerias responsivas disponíveis para qualquer projeto
-- Modal acessível com navegação por teclado, foco controlado e suporte a movimento reduzido
-- Indicadores de projeto público ou privado
-- Metadados específicos por rota e por projeto
-- Sitemap, robots, Open Graph, Twitter/X e dados estruturados
-- Página 404 personalizada
-- Currículo disponível para download
-
-## Projetos apresentados
-
-- **Sistema de Gestão da EBD:** aplicação de gestão com autenticação, perfis de acesso, chamadas, cadastros, histórico e relatórios.
-- **Assistente de Encerramento de Chamados:** sistema web para gerar, editar, copiar e reutilizar registros técnicos de conclusão e encaminhamento, com salvamento automático e histórico pesquisável no navegador.
-- **Automação de Limpeza Remota em Massa:** ferramenta em PowerShell para configurar e acompanhar tentativas de disparo em vários equipamentos.
-- **Toolkit de Suporte Técnico:** aplicação desktop modular com recursos de mensagens, scripts, diagnóstico e apoio ao atendimento.
-- **Automação de Chamados em Lote:** extensão para organizar registros, filtros, fila e estados de processamento.
-
-## Estrutura principal
-
-```text
-app/                         Rotas, metadados e arquivos especiais do Next.js
-components/                  Seções visuais e componentes reutilizáveis
-components/projects/         Cards, detalhes e galeria dos estudos de caso
-data/projects.ts             Conteúdo estruturado dos projetos
-types/project.ts             Tipos compartilhados dos projetos
-public/images/projetos/      Evidências visuais organizadas por projeto
-public/documentos/           Currículo público
-```
-
-## Como instalar e executar
-
-Pré-requisitos:
-
-- Node.js compatível com o Next.js 16
-- npm
-
-Clone o repositório e entre na pasta:
-
-```bash
-git clone https://github.com/gabrielsp20/portfolio-gabriel-ferreira.git
-cd portfolio-gabriel-ferreira
-```
-
-Instale as dependências:
+Next.js 16.2.10, React 19.2.4, TypeScript e Tailwind CSS 4. As versões e o lockfile foram preservados.
 
 ```bash
 npm ci
-```
-
-Inicie o ambiente de desenvolvimento:
-
-```bash
 npm run dev
 ```
 
-Acesse [http://localhost:3000](http://localhost:3000).
-
-## Scripts disponíveis
+No Windows, use `npm.cmd` se a política do PowerShell bloquear `npm.ps1`.
 
 ```bash
-npm run dev        # ambiente local de desenvolvimento
-npm run lint       # análise estática com ESLint
-npm run typecheck  # verificação do TypeScript sem gerar arquivos
-npm run build      # build de produção e geração das rotas estáticas
-npm run start      # execução local do build de produção
+npm run lint
+npm run typecheck
+npm run build
+npm run start
 ```
 
-## SEO
+Consulte `AGENTS.md` e a documentação instalada em `node_modules/next/dist/docs/` antes de modificar APIs do Next.js.
 
-O projeto inclui canonical específico por rota, metadados próprios nos estudos de caso, imagens sociais, sitemap, robots e JSON-LD para `Person`, `WebSite` e `CreativeWork` quando adequado.
+## Conteúdo e estrutura
 
-## Acessibilidade e responsividade
+- `app/`: início, Sobre, Experiência, Contato, página 404 e metadados.
+- `components/`: seções renderizadas no servidor; apenas o cabeçalho e a cópia do e-mail usam componentes de cliente.
+- `data/profile.json`: fonte comum dos cargos, períodos, competências, formação e contatos usados no site e no currículo.
+- `app/globals.css`: tokens de cor, tipografia, estados de interação e composição responsiva.
+- `lib/metadata.ts`: títulos, descrições e canonical específicos por página.
+- `lib/brand.ts`: cores equivalentes para as imagens geradas por `ImageResponse`, que não resolve variáveis CSS.
+- `public/documentos/curriculo-gabriel-ferreira.pdf`: currículo público, com endereço de download preservado.
+- `scripts/build_resume.py`: geração do currículo a partir dos dados profissionais. Requer Python e ReportLab; execute `python scripts/build_resume.py` e confira visualmente o PDF antes de publicar.
 
-- Link para pular diretamente ao conteúdo
-- Hierarquia semântica de títulos
-- Foco visível e áreas de toque adequadas
-- Menu mobile com fechamento por Esc e controle de foco
-- Galeria com focus trap, restauração do foco e navegação por setas
-- Conteúdo de fundo indisponível enquanto um modal está aberto
-- Suporte a `prefers-reduced-motion`
-- Layout adaptado para celulares, tablets e telas maiores
+## Retirada dos projetos
 
-## Confidencialidade
+A versão pública não apresenta projetos, estudos de caso ou capturas de aplicações. As rotas `/projetos` e `/projetos/[slug]` foram removidas e recebem o 404 nativo do Next.js. Sitemap e dados estruturados incluem apenas as páginas e informações profissionais pertinentes.
 
-Projetos privados são apresentados por meio de descrições, tecnologias, decisões e imagens de demonstração. As imagens usadas nas automações e no Toolkit contêm dados fictícios. O repositório não publica credenciais, senhas, tokens, URLs internas, scripts sensíveis nem código confidencial.
+Os arquivos anteriores continuam recuperáveis pelo histórico Git. Para consultar o conteúdo de uma versão anterior sem republicá-lo:
 
-Os números exibidos nas telas de demonstração não representam resultados de produção. Estados intermediários, como “disparado”, também não são apresentados como comprovação de conclusão de uma rotina.
+```bash
+git log --all -- app/projetos data/projects.ts public/images/projetos
+git show <commit>:data/projects.ts
+```
 
-## Autor
+Cópias locais, ferramentas e resultados de QA ficam em diretórios ignorados pelo Git e fora de `public/`.
 
-Gabriel Ferreira
+## Acessibilidade
 
-- [LinkedIn](https://www.linkedin.com/in/gabriel-ferreira-387070204/)
-- [GitHub](https://github.com/gabrielsp20)
-- [Portfólio](https://www.gabrielsferreira.com.br)
+Link para pular ao conteúdo, um H1 por página, foco visível, navegação por teclado, contraste sobre superfícies claras e escuras e respeito a movimento reduzido. O menu móvel controla o foco e o conteúdo de fundo, fecha com Esc e libera a rolagem ao mudar para desktop. O contato oferece e-mail visível, abertura pelo aplicativo, confirmação de cópia e seleção manual em caso de falha.
 
-Este portfólio foi desenvolvido com apoio de inteligência artificial em atividades como pesquisa, estruturação, revisão, aceleração, testes e ajustes. As decisões e o código precisam ser compreendidos e validados antes de fazer parte do projeto.
+## Publicação
+
+Preserve o domínio e a integração GitHub/Vercel existentes. O build usa `next/font` para otimizar e hospedar as fontes; precisa acessá-las durante a compilação. Antes de enviar, execute as verificações, revise o site no navegador e confirme a publicação da Vercel no domínio final.

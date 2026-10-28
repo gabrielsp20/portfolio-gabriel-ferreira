@@ -1,16 +1,15 @@
-import type { Metadata } from "next";
-import { About } from "../../components/About";
+﻿import { About } from "../../components/About";
+import { pageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Sobre",
-  description:
-    "Conheça a trajetória profissional de Gabriel Ferreira em Suporte de TI, automação e desenvolvimento web.",
-  alternates: { canonical: "/sobre" },
-};
+export const metadata = pageMetadata(
+  "Sobre",
+  "Da manutenção de dispositivos ao suporte corporativo: conheça a trajetória e a forma de trabalho de Gabriel Ferreira.",
+  "/sobre",
+);
 
 export default function SobrePage() {
   return (
-    <main id="conteudo-principal">
+    <main id="conteudo-principal" tabIndex={-1}>
       <About />
     </main>
   );

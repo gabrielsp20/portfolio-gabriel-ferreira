@@ -1,84 +1,61 @@
-import Link from "next/link";
-
-const competencias = [
-  "Suporte corporativo",
-  "PowerShell e automação",
-  "React e Next.js",
-  "SQL e Supabase",
-];
+﻿import Link from "next/link";
+import profile from "../data/profile.json";
 
 export function Hero() {
   return (
-    <section
-      id="inicio"
-      aria-labelledby="titulo-principal"
-      className="mx-auto flex min-h-[calc(100dvh-112px)] w-full max-w-7xl items-center px-6 pb-20 lg:px-10"
-    >
-      <div className="max-w-6xl">
-        <p className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-gold-500">
-          Analista de Suporte de TI e Automação
-        </p>
-
-        <h1
-          id="titulo-principal"
-          className="font-serif text-6xl leading-none tracking-[-0.05em] md:text-8xl lg:text-9xl"
-        >
-          Gabriel Ferreira
+    <section className="hero container" aria-labelledby="titulo-principal">
+      <div className="hero-copy">
+        <p className="eyebrow">Gabriel Ferreira · Analista de Suporte de TI</p>
+        <h1 id="titulo-principal">
+          Experiência no suporte.
+          <br />
+          Automação na prática.
         </h1>
-
-        <p className="mt-8 max-w-6xl text-xl leading-relaxed text-gold-300 md:text-2xl">
-          Suporte corporativo, automação e desenvolvimento de soluções para a
-          rotina de TI.
+        <p className="hero-description">
+          Atendimento, diagnóstico e documentação para a rotina de TI. Scripts e
+          melhoria de processos para fazer essa rotina evoluir.
         </p>
-
-        <p className="mt-6 max-w-3xl text-base leading-8 text-gold-300/80 md:text-lg">
-          Transformo necessidades recorrentes do atendimento em procedimentos,
-          scripts e ferramentas que organizam o trabalho, reduzem etapas manuais
-          e tornam a documentação mais consistente.
-        </p>
-
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-          <Link
-            href="/projetos"
-            className="inline-flex min-h-14 items-center justify-center rounded-md bg-gold-400 px-8 text-lg font-semibold text-navy-900 transition-all hover:-translate-y-0.5 hover:bg-gold-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-400"
-          >
-            Ver projetos
-          </Link>
-
-          <Link
-            href="/experiencia"
-            className="inline-flex min-h-14 items-center justify-center rounded-md border border-gold-400/60 px-8 text-lg font-semibold text-gold-400 transition-all hover:-translate-y-0.5 hover:bg-gold-400/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-400"
-          >
-            Conhecer experiência
-          </Link>
-
+        <div className="actions">
           <a
-            href="/documentos/curriculo-gabriel-ferreira.pdf"
+            className="button button-primary"
+            href={profile.resume}
             download="Curriculo-Gabriel-Ferreira.pdf"
-            className="inline-flex min-h-14 items-center justify-center gap-3 rounded-md border border-gold-400/25 px-8 text-lg font-semibold text-gold-300/80 transition-all hover:-translate-y-0.5 hover:border-gold-400/60 hover:bg-gold-400/10 hover:text-gold-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-400"
           >
-            Baixar currículo
-
-            <span aria-hidden="true" className="text-xl">
-              ↓
-            </span>
+            Baixar currículo <span aria-hidden="true">↓</span>
           </a>
+          <Link className="button button-secondary" href="/contato">
+            Entrar em contato <span aria-hidden="true">↗</span>
+          </Link>
         </div>
-
-        <ul
-          aria-label="Principais competências"
-          className="mt-12 flex max-w-5xl flex-wrap gap-x-8 gap-y-3 border-t border-gold-400/15 pt-6"
-        >
-          {competencias.map((competencia) => (
-            <li
-              key={competencia}
-              className="text-sm font-medium text-gold-300/65"
-            >
-              {competencia}
-            </li>
-          ))}
-        </ul>
+        <Link className="text-link hero-link" href="/experiencia">
+          Conhecer minha experiência <span aria-hidden="true">→</span>
+        </Link>
       </div>
+      <aside className="profile-note" aria-label="Perfil profissional">
+        <span className="monogram" aria-hidden="true">
+          GF
+        </span>
+        <p className="eyebrow">Perfil profissional</p>
+        <dl>
+          <div>
+            <dt>Atuação</dt>
+            <dd>Suporte de TI e Service Desk</dd>
+          </div>
+          <div>
+            <dt>Experiência corporativa</dt>
+            <dd>
+              SONDA IT <span>desde maio de 2022</span>
+            </dd>
+          </div>
+          <div>
+            <dt>Formação</dt>
+            <dd>
+              Ciência da Computação <span>UNINOVE · Concluído em 2022</span>
+            </dd>
+          </div>
+        </dl>
+        <p className="profile-location">{profile.location}</p>
+      </aside>
     </section>
   );
 }

@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local tools, original material and visual QA (never public or bundled)
+/.tools/
+/.local-backup/
+/tmp/
+/output/

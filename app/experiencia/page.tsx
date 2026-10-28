@@ -1,16 +1,15 @@
-import type { Metadata } from "next";
-import { Experience } from "../../components/Experience";
+﻿import { Experience } from "../../components/Experience";
+import { pageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Experiência",
-  description:
-    "Conheça a experiência profissional de Gabriel Ferreira em Suporte de TI, Service Desk, diagnóstico técnico e documentação.",
-  alternates: { canonical: "/experiencia" },
-};
+export const metadata = pageMetadata(
+  "Experiência",
+  "Trajetória de Gabriel Ferreira na SONDA IT, manutenção autônoma e ASSISTHEL TELECOM. Responsabilidades em suporte e formação em Ciência da Computação.",
+  "/experiencia",
+);
 
 export default function ExperienciaPage() {
   return (
-    <main id="conteudo-principal">
+    <main id="conteudo-principal" tabIndex={-1}>
       <Experience />
     </main>
   );

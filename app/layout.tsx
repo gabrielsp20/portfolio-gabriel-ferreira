@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import profile from "../data/profile.json";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -22,12 +23,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.gabrielsferreira.com.br"),
 
   title: {
-    default: "Gabriel Ferreira | Suporte, Automação e Desenvolvimento",
+    default: "Gabriel Ferreira | Suporte de TI e Automação",
     template: "%s | Gabriel Ferreira",
   },
 
   description:
-    "Portfólio de Gabriel Ferreira, profissional de TI com experiência em suporte corporativo, automação e desenvolvimento de soluções web.",
+    "Gabriel Ferreira: suporte de TI, Service Desk, diagnóstico, documentação e automação de rotinas profissionais.",
 
   authors: [
     {
@@ -46,22 +47,20 @@ export const metadata: Metadata = {
   ],
 
   openGraph: {
-    title: "Gabriel Ferreira | Portfólio Profissional",
+    title: "Gabriel Ferreira | Suporte de TI e Automação",
     description:
-      "Suporte corporativo, automação e desenvolvimento de soluções para problemas reais de TI.",
+      "Experiência no suporte. Automação na prática. Conheça a trajetória profissional e baixe o currículo.",
     url: "https://www.gabrielsferreira.com.br",
     type: "website",
     locale: "pt_BR",
-    siteName: "Portfólio Gabriel Ferreira",
-    images: ["/opengraph-image"],
+    siteName: "Gabriel Ferreira",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Gabriel Ferreira | Portfólio Profissional",
+    title: "Gabriel Ferreira | Suporte de TI e Automação",
     description:
-      "Suporte corporativo, automação e desenvolvimento de soluções para problemas reais de TI.",
-    images: ["/twitter-image"],
+      "Experiência no suporte. Automação na prática. Conheça a trajetória profissional e baixe o currículo.",
   },
 };
 
@@ -76,7 +75,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       "@type": "Person",
       name: "Gabriel Ferreira",
       url: "https://www.gabrielsferreira.com.br",
-      jobTitle: "Analista de Suporte de TI e Automação",
+      jobTitle: profile.role,
       homeLocation: {
         "@type": "Place",
         name: "Vitória da Conquista, Bahia, Brasil",
@@ -116,7 +115,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       data-scroll-behavior="smooth"
       className={`${manrope.variable} ${cormorantGaramond.variable} antialiased`}
     >
-      <body className="flex min-h-screen flex-col overflow-x-hidden bg-[radial-gradient(circle_at_center,_#0a3563_0%,_#061d3b_50%,_#031429_100%)] text-gold-400">
+      <body>
         <a href="#conteudo-principal" className="skip-link">
           Pular para o conteúdo
         </a>
@@ -128,7 +127,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
         <Header />
 
-        <div className="flex-1">{children}</div>
+        <div className="site-content">{children}</div>
 
         <Footer />
       </body>

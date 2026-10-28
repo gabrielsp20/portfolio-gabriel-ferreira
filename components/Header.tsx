@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,206 +8,141 @@ const links = [
   { label: "Início", href: "/" },
   { label: "Sobre", href: "/sobre" },
   { label: "Experiência", href: "/experiencia" },
-  { label: "Projetos", href: "/projetos" },
   { label: "Contato", href: "/contato" },
 ];
 
 export function Header() {
   const pathname = usePathname();
-  const [menuAberto, setMenuAberto] = useState(false);
-  const botaoMenuRef = useRef<HTMLButtonElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLElement>(null);
+  const brandRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    if (!menuAberto) {
-      return;
-    }
-
-    const overflowAnterior = document.body.style.overflow;
-    const botaoMenu = botaoMenuRef.current;
-    const elementosDeFundo = Array.from(
-      document.querySelectorAll<HTMLElement>("main, footer"),
-    );
-    const estadoAnterior = elementosDeFundo.map((elemento) => ({
-      elemento,
-      inert: elemento.inert,
-      ariaHidden: elemento.getAttribute("aria-hidden"),
+    if (!menuOpen) return;
+    const button = buttonRef.current;
+    const overflow = document.body.style.overflow;
+    const background = [
+      brandRef.current,
+      ...document.querySelectorAll<HTMLElement>(
+        ".site-content, footer, .desktop-nav, .skip-link",
+      ),
+    ].filter((element): element is HTMLElement => element !== null);
+    const previous = background.map((element) => ({
+      element,
+      inert: element.inert,
+      hidden: element.getAttribute("aria-hidden"),
     }));
-
     document.body.style.overflow = "hidden";
-    elementosDeFundo.forEach((elemento) => {
-      elemento.inert = true;
-      elemento.setAttribute("aria-hidden", "true");
+    background.forEach((element) => {
+      element.inert = true;
+      element.setAttribute("aria-hidden", "true");
     });
-
-    const frame = window.requestAnimationFrame(() => {
-      menuRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
-    });
-
-    function tratarTeclado(event: KeyboardEvent) {
+    const frame = requestAnimationFrame(() =>
+      menuRef.current?.querySelector<HTMLAnchorElement>("a")?.focus(),
+    );
+    const desktop = window.matchMedia("(min-width: 768px)");
+    function onResize() {
+      if (desktop.matches) setMenuOpen(false);
+    }
+    function onKey(event: KeyboardEvent) {
       if (event.key === "Escape") {
         event.preventDefault();
-        setMenuAberto(false);
+        setMenuOpen(false);
         return;
       }
-
-      if (event.key !== "Tab" || !menuRef.current) {
-        return;
-      }
-
-      const itens = [
-        botaoMenu,
-        ...Array.from(menuRef.current.querySelectorAll<HTMLElement>("a[href]")),
-      ].filter((item): item is HTMLElement => item !== null);
-      const primeiro = itens[0];
-      const ultimo = itens[itens.length - 1];
-
-      if (event.shiftKey && document.activeElement === primeiro) {
+      if (event.key !== "Tab") return;
+      const elements = [
+        button,
+        ...Array.from(
+          menuRef.current?.querySelectorAll<HTMLAnchorElement>("a") ?? [],
+        ),
+      ].filter(
+        (element): element is HTMLButtonElement | HTMLAnchorElement =>
+          element !== null,
+      );
+      const first = elements[0];
+      const last = elements[elements.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
-        ultimo.focus();
-      } else if (!event.shiftKey && document.activeElement === ultimo) {
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
         event.preventDefault();
-        primeiro.focus();
+        first?.focus();
       }
     }
-
-    window.addEventListener("keydown", tratarTeclado);
-
+    desktop.addEventListener("change", onResize);
+    window.addEventListener("keydown", onKey);
     return () => {
-      window.cancelAnimationFrame(frame);
-      document.body.style.overflow = overflowAnterior;
-      estadoAnterior.forEach(({ elemento, inert, ariaHidden }) => {
-        elemento.inert = inert;
-        if (ariaHidden === null) {
-          elemento.removeAttribute("aria-hidden");
-        } else {
-          elemento.setAttribute("aria-hidden", ariaHidden);
-        }
+      cancelAnimationFrame(frame);
+      document.body.style.overflow = overflow;
+      previous.forEach(({ element, inert, hidden }) => {
+        element.inert = inert;
+        if (hidden === null) element.removeAttribute("aria-hidden");
+        else element.setAttribute("aria-hidden", hidden);
       });
-      window.removeEventListener("keydown", tratarTeclado);
-      window.requestAnimationFrame(() => botaoMenu?.focus());
+      desktop.removeEventListener("change", onResize);
+      window.removeEventListener("keydown", onKey);
+      // A desktop resize hides the mobile trigger, so return focus to its active link.
+      if (desktop.matches)
+        document
+          .querySelector<HTMLAnchorElement>(
+            '.desktop-nav a[aria-current="page"]',
+          )
+          ?.focus();
+      else button?.focus();
     };
-  }, [menuAberto]);
+  }, [menuOpen]);
 
-  function paginaEstaAtiva(href: string) {
-    if (href === "/") {
-      return pathname === "/";
-    }
-
-    return pathname.startsWith(href);
+  function navigationLinks(mobile = false) {
+    return links.map((link) => (
+      <li key={link.href}>
+        <Link
+          href={link.href}
+          aria-current={pathname === link.href ? "page" : undefined}
+          onClick={() => setMenuOpen(false)}
+        >
+          {link.label}
+          {mobile && <span aria-hidden="true">→</span>}
+        </Link>
+      </li>
+    ));
   }
 
   return (
-    <header className="relative z-40 mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-8 lg:px-10">
-      <Link
-        href="/"
-        aria-label="Ir para a página inicial"
-        onClick={() => setMenuAberto(false)}
-        className="font-serif text-4xl font-semibold tracking-[-0.08em] transition-opacity hover:opacity-80"
-      >
-        GF
-      </Link>
-
-      {/* Menu para computador */}
-      <nav aria-label="Navegação principal" className="hidden md:block">
-        <ul className="flex items-center gap-10 text-base lg:gap-14">
-          {links.map((link) => {
-            const estaAtivo = paginaEstaAtiva(link.href);
-
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  aria-current={estaAtivo ? "page" : undefined}
-                  className={`border-b-2 pb-2 transition-colors ${
-                    estaAtivo
-                      ? "border-gold-400 font-semibold"
-                      : "border-transparent hover:border-gold-400/40 hover:text-gold-300"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
-
-      {/* Botão do menu para celular */}
-      <button
-        ref={botaoMenuRef}
-        type="button"
-        aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
-        aria-expanded={menuAberto}
-        aria-controls="menu-mobile"
-        onClick={() => setMenuAberto((estadoAtual) => !estadoAtual)}
-        className="relative z-50 flex min-h-11 min-w-11 items-center justify-center border border-gold-400/35 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-400 md:hidden"
-      >
-        <span aria-hidden="true" className="relative block h-5 w-6">
-          <span
-            className={`absolute left-0 top-0.5 h-px w-6 bg-gold-400 transition-all duration-300 ${
-              menuAberto ? "top-2.5 rotate-45" : ""
-            }`}
-          />
-
-          <span
-            className={`absolute left-0 top-2.5 h-px w-6 bg-gold-400 transition-all duration-300 ${
-              menuAberto ? "opacity-0" : "opacity-100"
-            }`}
-          />
-
-          <span
-            className={`absolute left-0 top-[18px] h-px w-6 bg-gold-400 transition-all duration-300 ${
-              menuAberto ? "top-2.5 -rotate-45" : ""
-            }`}
-          />
-        </span>
-      </button>
-
-      {/* Menu aberto no celular */}
-      <nav
-        ref={menuRef}
-        id="menu-mobile"
-        aria-label="Navegação para celular"
-        aria-hidden={!menuAberto}
-        inert={!menuAberto}
-        className={`fixed inset-x-0 bottom-0 top-[104px] z-40 border-t border-gold-400/15 bg-navy-950/95 px-6 py-8 backdrop-blur-md transition-all duration-200 motion-reduce:transition-none md:hidden ${
-          menuAberto
-            ? "visible translate-x-0 opacity-100"
-            : "invisible translate-x-full opacity-0"
-        }`}
-      >
-        <ul className="mx-auto flex h-full max-w-xl flex-col justify-center">
-          {links.map((link, index) => {
-            const estaAtivo = paginaEstaAtiva(link.href);
-
-            return (
-              <li key={link.href} className="border-b border-gold-400/15">
-                <Link
-                  href={link.href}
-                  aria-current={estaAtivo ? "page" : undefined}
-                  onClick={() => setMenuAberto(false)}
-                  className="group flex min-h-14 items-center justify-between py-5 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-gold-400"
-                >
-                  <span
-                    className={`font-serif text-4xl transition-colors ${
-                      estaAtivo
-                        ? "text-gold-400"
-                        : "text-gold-300/65 group-hover:text-gold-400"
-                    }`}
-                  >
-                    {link.label}
-                  </span>
-
-                  <span className="font-serif text-lg text-gold-400/30">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+    <header className="site-header">
+      <div className="container header-inner">
+        <Link ref={brandRef} href="/" className="brand">
+          <span className="monogram" aria-hidden="true">
+            GF
+          </span>
+          <span className="brand-name">Gabriel Ferreira</span>
+          <span className="sr-only"> — página inicial</span>
+        </Link>
+        <nav className="desktop-nav" aria-label="Navegação principal">
+          <ul>{navigationLinks()}</ul>
+        </nav>
+        <button
+          ref={buttonRef}
+          className="menu-toggle"
+          type="button"
+          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={menuOpen}
+          aria-controls="menu-mobile"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? "Fechar" : "Menu"}
+        </button>
+        <nav
+          ref={menuRef}
+          id="menu-mobile"
+          className="mobile-nav"
+          aria-label="Navegação para celular"
+          hidden={!menuOpen}
+        >
+          <ul>{navigationLinks(true)}</ul>
+        </nav>
+      </div>
     </header>
   );
 }
